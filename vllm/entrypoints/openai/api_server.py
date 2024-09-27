@@ -336,6 +336,8 @@ async def create_completion(request: CompletionRequest, raw_request: Request):
     return StreamingResponse(content=generator, media_type="text/event-stream")
 
 
+# 2024.09.23 yschoi
+# 여기에서 새로운 API를 추가할 수 있다.
 @router.post("/v1/embeddings")
 async def create_embedding(request: EmbeddingRequest, raw_request: Request):
     generator = await embedding(raw_request).create_embedding(
