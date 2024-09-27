@@ -736,7 +736,7 @@ class FlashAttentionImpl(AttentionImpl):
                     max_seqlen_q=prefill_meta.max_prefill_seq_len,
                     max_seqlen_k=prefill_meta.max_prefill_seq_len,
                     softmax_scale=self.scale,
-                    causal=True,
+                    causal=True, # 2024.09.23 yschoi : 여기서 손쉽게 bi-directional attention으로 변경 가능해 보인다. (FlashAttention 한정)
                     window_size=self.sliding_window,
                     alibi_slopes=self.alibi_slopes,
                     softcap=self.logits_soft_cap,
@@ -754,7 +754,7 @@ class FlashAttentionImpl(AttentionImpl):
                     cu_seqlens_k=prefill_meta.seq_start_loc,
                     max_seqlen_k=max_seq_len,
                     softmax_scale=self.scale,
-                    causal=True,
+                    causal=True, # 2024.09.23 yschoi : 여기서 손쉽게 bi-directional attention으로 변경 가능해 보인다. (FlashAttention 한정)
                     alibi_slopes=self.alibi_slopes,
                     block_table=prefill_meta.block_tables,
                     softcap=self.logits_soft_cap,
@@ -769,7 +769,7 @@ class FlashAttentionImpl(AttentionImpl):
                 block_table=decode_meta.block_tables,
                 cache_seqlens=decode_meta.seq_lens_tensor,
                 softmax_scale=self.scale,
-                causal=True,
+                causal=True, # 2024.09.23 yschoi : 여기서 손쉽게 bi-directional attention으로 변경 가능해 보인다. (FlashAttention 한정)
                 alibi_slopes=self.alibi_slopes,
                 softcap=self.logits_soft_cap,
             ).squeeze(1)
