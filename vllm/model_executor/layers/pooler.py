@@ -40,6 +40,9 @@ class Pooler(nn.Module):
         prompt_lens = PoolingTensors.from_pooling_metadata(
             pooling_metadata, hidden_states.device).prompt_lens
 
+        # 2024.09.23 yschoi
+        # 현재 last pooler(eos selector)만 구현되어 있다...
+        # avg pooler는 별도 구현이 필요하다
         if self.pooling_type == PoolingType.LAST:
             last_token_flat_indices = torch.cumsum(prompt_lens, dim=0) - 1
             pooled_data = hidden_states[last_token_flat_indices]
