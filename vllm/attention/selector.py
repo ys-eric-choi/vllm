@@ -150,6 +150,9 @@ def get_attn_backend(
         raise ValueError("Invalid attention backend.")
 
 
+# 2024.09.23 yschoi
+# Attention 구현체의 경우 vllm이 실행되는 하드웨어와
+# 모델의 configuration에 따라 아래에서 자동으로 선택
 def which_attn_to_use(
     num_heads: int,
     head_size: int,
