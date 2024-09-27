@@ -72,6 +72,11 @@ _GENERATION_MODELS = {
     "GraniteForCausalLM": ("granite", "GraniteForCausalLM")
 }
 
+# 2024.09.23 yschoi
+# Embedding 모델을 사용하기 위해서는 아래 등록이 필요하다.
+# Key는 모델 체크포인트와 함께 있는 config.json의 "architectures"이다.
+# Value[0]은 model_executor/models 내 .py 파일명으로 예상된다.
+# Value[1]은 .py 파일 내 class명으로 예상된다.
 _EMBEDDING_MODELS = {
     "MistralModel": ("llama_embedding", "LlamaEmbeddingModel"),
 }
