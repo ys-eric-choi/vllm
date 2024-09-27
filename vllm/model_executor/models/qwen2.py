@@ -270,6 +270,12 @@ class Qwen2Model(nn.Module):
         intermediate_tensors: Optional[IntermediateTensors] = None,
         inputs_embeds: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
+        # 2024.09.23 yschoi
+        # vLLM은 기본적으로 batch를 flat하여 padding 없이 처리한다.
+        # e.g. ['안녕', '안녕하세요']
+        #       -> [[256], [256, 33246]]
+        #       -> input_ids = [256, 256, 33246]
+        # 대신 각 batch의 start, end index를 함께 넘겨주는 것으로 보인다.
         if get_pp_group().is_first_rank:
             if inputs_embeds is not None:
                 hidden_states = inputs_embeds
