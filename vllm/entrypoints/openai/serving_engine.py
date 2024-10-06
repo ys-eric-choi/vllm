@@ -218,6 +218,8 @@ class OpenAIServing:
         truncate_prompt_tokens: Optional[Annotated[int, Field(ge=1)]],
         add_special_tokens: bool,
     ) -> TextTokensPrompt:
+        # 2024.10.07 yschoi
+        # 여기에서 입력 Text에 대해 tokenization을 수행한다.
         if truncate_prompt_tokens is None:
             encoded = tokenizer(prompt, add_special_tokens=add_special_tokens)
         else:
