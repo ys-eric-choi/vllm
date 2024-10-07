@@ -611,6 +611,8 @@ class CompletionRequest(OpenAIBaseModel):
         return data
 
 
+# 2024.10.07 yschoi
+# 아래에서 연동 규격 수정하여, 동일 API에 대해 Query와 Passage를 구분할 수 있다.
 class EmbeddingRequest(OpenAIBaseModel):
     # Ordered by official OpenAI API documentation
     # https://platform.openai.com/docs/api-reference/embeddings
