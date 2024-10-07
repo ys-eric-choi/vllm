@@ -122,6 +122,10 @@ class OpenAIServingEmbedding(OpenAIServing):
 
             pooling_params = request.to_pooling_params()
 
+            # 2024.10.07 yschoi
+            # 여기에서 request 규격의 구분자를 통해 input 앞에 'UNUSED' token을 부착할 수 있다.
+            # TODO write code, concat 'UNUSED' token and input text
+
             prompts = list(
                 self._tokenize_prompt_input_or_inputs(
                     request,
